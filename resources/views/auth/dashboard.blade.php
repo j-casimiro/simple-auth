@@ -11,6 +11,13 @@
 
 <body class="flex justify-center items-center px-4 min-h-screen bg-gray-50">
     <div class="p-6 w-full max-w-2xl text-center bg-white rounded-lg shadow-lg">
+        <div class="container">
+            @if (session('success'))
+                <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">
+                    {{ session('success') }}
+                </div>
+            @endif
+        </div>
         <h1 class="mb-4 text-3xl font-bold text-gray-800">Welcome to Your Dashboard, {{ Auth::user()->name }}!</h1>
         <p class="mb-6 text-gray-600">
             We're glad to have you back. Explore your account or log out when you're done.
