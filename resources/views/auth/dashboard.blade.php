@@ -14,6 +14,8 @@
         <div class="container">
             @if (session('success'))
                 <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">
+                    <button class="float-right text-green-700"
+                        onclick="this.parentElement.style.display='none'">&times;</button>
                     {{ session('success') }}
                 </div>
             @endif

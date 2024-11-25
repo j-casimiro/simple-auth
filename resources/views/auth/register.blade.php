@@ -14,12 +14,16 @@
         <h1 class="mb-6 text-2xl font-bold text-center text-gray-800">Register User</h1>
         @if (session('success'))
             <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">
+                <button class="float-right text-green-700"
+                    onclick="this.parentElement.style.display='none'">&times;</button>
                 {{ session('success') }}
             </div>
         @endif
 
         @if (session('error'))
             <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+                <button class="float-right text-red-700"
+                    onclick="this.parentElement.style.display='none'">&times;</button>
                 {{ session('error') }}
             </div>
         @endif
