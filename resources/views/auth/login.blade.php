@@ -42,22 +42,12 @@
                 <input type="email" name="email" id="email" required
                     class="block px-3 py-2 mt-1 w-full text-sm rounded-md border border-gray-300 shadow-sm focus:ring-neutral-500 focus:border-neutral-500"
                     value="{{ old('email') }}" placeholder="Enter your email">
-                @error('email')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                @enderror
             </div>
             <div>
                 <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                 <input type="password" name="password" id="password" required
                     class="block px-3 py-2 mt-1 w-full text-sm rounded-md border border-gray-300 shadow-sm focus:ring-neutral-500 focus:border-neutral-500"
                     placeholder="Enter your password">
-                @error('password')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                @enderror
             </div>
             <div>
                 <button type="submit"
