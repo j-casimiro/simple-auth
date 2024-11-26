@@ -30,6 +30,14 @@
 
         @error('email')
             <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+                <button class="float-right text-red-700" onclick="this.parentElement.style.display='none'">&times;</button>
+                {{ $message }}
+            </div>
+        @enderror
+
+        @error('password')
+            <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+                <button class="float-right text-red-700" onclick="this.parentElement.style.display='none'">&times;</button>
                 {{ $message }}
             </div>
         @enderror
