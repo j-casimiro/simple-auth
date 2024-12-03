@@ -70,14 +70,15 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        if (Auth::attempt($credentials, $request->boolean('remember'))) {
-            $request->session()->regenerate();
+        $user = User::where('email', $credentials['email'])->first();
+
+        if (Auth::attempt($credentials)) {
+
+            Auth::login($user);
 
             return redirect()->intended(route('showDashboardPage'))
                 ->with('success', 'Welcome back!');
         }
-
-        $user = User::where('email', $credentials['email'])->first();
 
         if (!$user) {
             return back()
@@ -101,8 +102,7 @@ class AuthController extends Controller
      */
     public function showDashboardPage()
     {
-        $user = Auth::user();
-        return view('auth.dashboard', compact('user'));
+        return view('auth.dashboard');
     }
 
     /**
@@ -111,12 +111,9 @@ class AuthController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
 
         return redirect()->route('showLoginForm')
             ->with('success', 'You have been successfully logged out.');

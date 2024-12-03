@@ -30,6 +30,8 @@
                 <div class="p-6 text-left bg-white rounded-lg shadow-md">
                     <h3 class="mb-4 text-lg font-semibold text-gray-800">Profile Information</h3>
                     <div class="space-y-3">
+                        <p class="text-gray-700"><span class="font-medium text-gray-900">Id:</span>
+                            {{ Auth::id() }}</p>
                         <p class="text-gray-700"><span class="font-medium text-gray-900">Address:</span>
                             {{ Auth::user()->profile->address }}</p>
                         <p class="text-gray-700"><span class="font-medium text-gray-900">Position:</span>

@@ -34,6 +34,7 @@
                 {{ $message }}
             </div>
         @enderror
+
         <form action="{{ route('login') }}" method="POST" class="space-y-4">
             @method('POST')
             @csrf
