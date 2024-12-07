@@ -30,14 +30,15 @@
                 <div class="p-6 text-left bg-white rounded-lg shadow-md">
                     <h3 class="mb-4 text-lg font-semibold text-gray-800">Profile Information</h3>
                     <div class="space-y-3">
-                        <p class="text-gray-700"><span class="font-medium text-gray-900">Id:</span>
-                            {{ Auth::id() }}</p>
-                        <p class="text-gray-700"><span class="font-medium text-gray-900">Address:</span>
-                            {{ Auth::user()->profile->address }}</p>
-                        <p class="text-gray-700"><span class="font-medium text-gray-900">Position:</span>
-                            {{ Auth::user()->profile->position }}</p>
-                        <p class="text-gray-700"><span class="font-medium text-gray-900">Phone:</span>
-                            {{ Auth::user()->profile->phone }}</p>
+                        @foreach (['id' => 'Id:', 'address' => 'Address:', 'position' => 'Position:', 'phone' => 'Phone:'] as $key => $label)
+                            <p class="text-gray-700"><span class="font-medium text-gray-900">{{ $label }}</span>
+                                @if ($key == 'id')
+                                    {{ Auth::id() }}
+                                @else
+                                    {{ Auth::user()->profile->$key }}
+                                @endif
+                            </p>
+                        @endforeach
                     </div>
                 </div>
             @else
