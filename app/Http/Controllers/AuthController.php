@@ -34,14 +34,14 @@ class AuthController extends Controller
             'role' => 'sometimes|string|in:user,admin'
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => $validated['role'] ?? 'user'
         ]);
 
-        Auth::login(User::where('email', $validated['email'])->first());
+        Auth::login($user);
 
         return redirect()->route('showDashboardPage')
             ->with('success', 'Registration successful! Welcome aboard!');
