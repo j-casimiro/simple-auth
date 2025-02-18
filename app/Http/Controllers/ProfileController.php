@@ -50,7 +50,6 @@ class ProfileController extends Controller
         return redirect()->route('showDashboardPage')->with('success', 'Profile created successfully!');
     }
 
-    // New methods with authorization
     public function index()
     {
         // Using Gate
