@@ -23,6 +23,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Profile routes
+    Route::get('/profiles', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/profile/create', [ProfileController::class, 'showProfileForm'])->name('profile.create');
     Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
+    Route::get('/profile/{profile}', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/{profile}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/{profile}', [ProfileController::class, 'update'])->name('profile.update');
 });

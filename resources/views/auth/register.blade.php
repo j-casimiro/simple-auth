@@ -57,6 +57,14 @@
                     value="{{ old('email') }}" placeholder="Enter your email">
             </div>
             <div>
+                <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+                <select name="role" id="role"
+                    class="block px-3 py-2 mt-1 w-full text-sm rounded-md border border-gray-300 shadow-sm focus:ring-neutral-500 focus:border-neutral-500">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div>
                 <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                 <input type="password" name="password" id="password" required
                     class="block px-3 py-2 mt-1 w-full text-sm rounded-md border border-gray-300 shadow-sm focus:ring-neutral-500 focus:border-neutral-500"

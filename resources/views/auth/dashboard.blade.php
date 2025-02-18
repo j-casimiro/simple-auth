@@ -10,6 +10,14 @@
 </head>
 
 <body class="flex justify-center items-center px-4 min-h-screen bg-gray-50">
+    <div class="absolute top-4 right-4">
+        @if (Auth::user()->role === 'admin')
+            <a href="{{ route('profile.index') }}"
+                class="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-md hover:bg-purple-700">
+                Manage All Profiles
+            </a>
+        @endif
+    </div>
     <div class="p-6 w-full max-w-2xl text-center bg-white rounded-lg shadow-lg">
         <div class="container">
             @if (session('success'))
@@ -20,7 +28,16 @@
                 </div>
             @endif
         </div>
-        <h1 class="mb-4 text-3xl font-bold text-gray-800">Welcome to Your Dashboard, {{ Auth::user()->name }}!</h1>
+
+        <div class="mb-6">
+            <h1 class="mb-2 text-3xl font-bold text-gray-800">Welcome to Your Dashboard, {{ Auth::user()->name }}!</h1>
+            @if (Auth::user()->role === 'admin')
+                <span class="inline-block px-3 py-1 text-sm font-medium text-white bg-purple-600 rounded-full">
+                    Admin User
+                </span>
+            @endif
+        </div>
+
         <p class="mb-6 text-gray-600">
             We're glad to have you back. Explore your account or log out when you're done.
         </p>
@@ -40,16 +57,22 @@
                             </p>
                         @endforeach
                     </div>
+                    <div class="mt-4 space-x-4">
+                        <a href="{{ route('profile.show', Auth::user()->profile) }}"
+                            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
+                            View Profile
+                        </a>
+                    </div>
                 </div>
             @else
                 <a href="{{ route('profile.create') }}"
-                    class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md shadow-sm hover:bg-green-700">
                     Create Profile
                 </a>
             @endif
         </div>
 
-        <form action="{{ route('logout') }}" method="POST">
+        <form action="{{ route('logout') }}" method="POST" class="mt-6">
             @method('POST')
             @csrf
             <button type="submit"
