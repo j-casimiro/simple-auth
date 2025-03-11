@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Auth\Access\Gate;
+use Illuminate\Support\Facades\Log;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,4 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/{profile}', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile/{profile}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/{profile}', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+Route::get('/test-log', function () {
+    Log::info('Test log entry');
+    return 'Check your logs';
 });

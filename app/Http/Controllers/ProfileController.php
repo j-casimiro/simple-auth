@@ -12,12 +12,15 @@ class ProfileController extends Controller
 {
     use AuthorizesRequests;
 
+    // GATE DEFINITIONS
     public function __construct()
     {
+        // RBAC
         Gate::define('view-any-profile', function ($user) {
             return $user->role === 'admin';
         });
 
+        // RBAC & ABAC
         Gate::define('view-profile', function ($user, Profile $profile) {
             return $user->id === $profile->user_id || $user->role === 'admin';
         });
@@ -53,12 +56,12 @@ class ProfileController extends Controller
     public function index()
     {
         // Using Gate
-        if (! Gate::allows('view-any-profile')) {
-            abort(403);
-        }
+        // if (! Gate::allows('view-any-profile')) {
+        //     abort(403);
+        // }
 
         // Or using Policy
-        // $this->authorize('viewAny', Profile::class);
+        $this->authorize('viewAny', Profile::class);
 
         $profiles = Profile::all();
         return view('profiles.index', compact('profiles'));
@@ -83,6 +86,8 @@ class ProfileController extends Controller
             abort(403);
         }
 
+        // $this->authorize('update', $profile);
+
         return view('profile.edit', compact('profile'));
     }
 
@@ -91,6 +96,8 @@ class ProfileController extends Controller
         if (! Gate::allows('update-profile', $profile)) {
             abort(403);
         }
+
+        // $this->authorize('update', $profile);
 
         $validatedData = $request->validate([
             'address' => 'required|string|max:255',
