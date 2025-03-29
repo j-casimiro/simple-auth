@@ -17,6 +17,10 @@
                 Manage All Profiles
             </a>
         @endif
+        <a href="{{ route('about') }}"
+            class="px-4 py-2 m-4 text-sm font-medium text-white bg-green-600 rounded-md shadow-sm hover:bg-green-700">
+            About
+        </a>
     </div>
     <div class="p-6 w-full max-w-2xl text-center bg-white rounded-lg shadow-lg">
         <div class="container">

@@ -37,3 +37,7 @@ Route::get('/test-log', function () {
     Log::info('Test log entry');
     return 'Check your logs';
 });
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about')->middleware('under-maintenance');

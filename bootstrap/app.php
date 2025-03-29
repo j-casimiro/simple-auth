@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use App\Http\Middleware\GlobalMiddleware;
+use App\Http\Middleware\UnderMaintenanceMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -11,7 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function ($middleware) {
-        $middleware->append(GlobalMiddleware::class); // Make sure this line exists and has the correct namespace
+        $middleware->append(GlobalMiddleware::class);
+        $middleware->alias([
+            'under-maintenance' => UnderMaintenanceMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

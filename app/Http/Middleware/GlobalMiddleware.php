@@ -11,13 +11,12 @@ class GlobalMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        // Also try error log
         error_log("GlobalMiddleware running for URL: " . $request->fullUrl());
+        error_log("Request Method: " . $request->method());
+        error_log("IP Address: " . $request->ip());
+        error_log("User Agent: " . $request->userAgent());
 
         $response = $next($request);
-
-        // Add headers (this is a visible way to confirm middleware execution)
-        $response->header('X-Middleware-Ran', 'Yes-' . time());
 
         return $response;
     }
